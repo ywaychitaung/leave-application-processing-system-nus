@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave Application</title>
+</head>
+<body>
+    <h1>Leave Application</h1>
+
+    <div class="flex flex-col">
+        <form action="/leave-application/store" method="post" id="leaveApplication">
+            <div>
+                <label for="leaveTypeId">Leave Type Id</label>
+                <input type="number" name="leaveTypeId" id="leaveTypeId">
+            </div>
+
+            <div>
+                <label for="startDate">Start Date</label>
+                <input type="date" name="startDate" id="startDate">
+            </div>
+
+            <div>
+                <label for="endDate">End Date</label>
+                <input type="date" name="endDate" id="endDate">
+            </div>
+
+            <div>
+                <label for="leaveReason">Reason</label>
+                <textarea name="leaveReason" id="leaveReason" cols="30" rows="10"></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

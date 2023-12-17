@@ -19,7 +19,11 @@ public class LoginController {
     }
 
     @PostMapping("/login")
+    // RequestParam: Get the form data
+    // RequestParam：获取表单数据
     public String login(@RequestParam String email, @RequestParam String password, Model model) {
+        // Login Service: Check the user credentials and return home if successful else return login with error message
+        // 登录服务：检查用户凭据并在成功时返回主页，否则返回带有错误消息的登录
         if (loginService.login(email, password)) {
             model.addAttribute("message", "Login successful");
             return "home"; // Name of the success view
