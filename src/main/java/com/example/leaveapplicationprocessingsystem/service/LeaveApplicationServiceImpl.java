@@ -7,11 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class LeaveApplicationServiceImpl implements LeaveApplicationService {
     @Autowired
     private LeaveApplicationRepository leaveApplicationRepository;
+
+    @Override
+    @Transactional
+    public List<LeaveApplication> findAllByUserId(Integer userId) {
+        return leaveApplicationRepository.findByUserId(userId);
+    }
 
     @Override
     @Transactional
