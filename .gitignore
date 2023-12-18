@@ -35,6 +35,9 @@ build/
 ### OS ###
 .DS_Store
 
+### Node modules ###
+node_modules/
+
 ### env ###
 .env
 *.log

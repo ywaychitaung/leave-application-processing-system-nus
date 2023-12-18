@@ -1,0 +1,17 @@
+{
+  "name": "leave-application-management-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss -i src/main/resources/static/tailwind.css -o src/main/resources/static/style.css --watch",
+    "build": "tailwindcss -i src/main/resources/static/tailwind.css -o src/main/resources/static/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "tailwindcss": "^3.3.6"
+  }
+}
