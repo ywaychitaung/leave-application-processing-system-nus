@@ -13,8 +13,19 @@ public class UserData {
 
     @Test
     public void createUserData() {
-        User user1 = new User("ywaychitaung@gmail.com", "ywaychitaung", "123456", 1);
+        String[] firstNames = {"Alice", "Bob", "Charlie", "David", "Eva", "Fiona", "George", "Hannah", "Ian", "Julia"};
+        String[] lastNames = {"Johnson", "Smith", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor", "Anderson", "Thomas"};
 
-        userRepository.save(user1);
+        for (int i = 0; i < 10; i++) {
+            String email = firstNames[i].toLowerCase() + "." + lastNames[i].toLowerCase() + "@example.com";
+            String username = firstNames[i].toLowerCase() + lastNames[i].toLowerCase();
+            String firstName = firstNames[i];
+            String lastName = lastNames[i];
+            String password = "password";
+            int roleId = (i % 3) + 1;
+
+            User user = new User(email, firstName, lastName, username, password, roleId);
+            userRepository.save(user);
+        }
     }
 }

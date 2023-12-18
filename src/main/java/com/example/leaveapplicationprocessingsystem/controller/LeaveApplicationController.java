@@ -2,6 +2,7 @@ package com.example.leaveapplicationprocessingsystem.controller;
 
 import com.example.leaveapplicationprocessingsystem.entity.LeaveApplication;
 import com.example.leaveapplicationprocessingsystem.service.LeaveApplicationService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,10 @@ public class LeaveApplicationController {
     private LeaveApplicationService leaveApplicationService;
 
     @GetMapping("/leave-applications")
-    public String index(Model model) {
+    public String index(HttpSession session, Model model) {
+        model.addAttribute("firstName", session.getAttribute("firstName"));
+        model.addAttribute("lastName", session.getAttribute("lastName"));
+
         // Find all leave applications by user ID
         // 通过用户 ID 查找所有请假申请
         model.addAttribute("leaveApplications", leaveApplicationService.findAllByUserId(1));
