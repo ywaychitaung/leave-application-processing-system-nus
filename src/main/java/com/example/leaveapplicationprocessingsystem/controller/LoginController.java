@@ -15,6 +15,8 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
+        // Return the login view
+        // 返回登录视图
         return "login";
     }
 

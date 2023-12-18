@@ -30,4 +30,36 @@ public class LeaveApproval {
         this.status = status;
         this.comment = comment;
     }
+
+    public Integer getApprovalId() {
+        return approvalId;
+    }
+
+    public void setApprovalId(Integer approvalId) {
+        this.approvalId = approvalId;
+    }
+
+    public Integer getLeaveApplicationId() {
+        return leaveApplicationId;
+    }
+
+    public void setLeaveApplicationId(Integer leaveApplicationId) {
+        this.leaveApplicationId = leaveApplicationId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }

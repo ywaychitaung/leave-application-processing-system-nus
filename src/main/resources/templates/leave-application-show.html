@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave Application Details</title>
+    <link rel="stylesheet" th:href="@{/static/style.css}" />
+</head>
+<body class="p-16">
+<h1 class="text-center mb-8">Leave Application Details</h1>
+<div class="flex items-center justify-center">
+    <div th:if="${leaveApplication}" class="border rounded-lg p-8 space-y-6">
+        <p><strong>Application ID:</strong> <span th:text="${leaveApplication.leaveApplicationId}"></span></p>
+        <p><strong>User ID:</strong> <span th:text="${leaveApplication.userId}"></span></p>
+        <p><strong>Leave Type ID:</strong> <span th:text="${leaveApplication.leaveTypeId}"></span></p>
+        <p><strong>Start Date:</strong> <span th:text="${leaveApplication.startDate}"></span></p>
+        <p><strong>End Date:</strong> <span th:text="${leaveApplication.endDate}"></span></p>
+        <p><strong>Reason:</strong> <span th:text="${leaveApplication.leaveReason}"></span></p>
+        <p><strong>Status:</strong> <span th:text="${leaveApplication.leaveStatus}"></span></p>
+    </div>
+</div>
+
+<div th:unless="${leaveApplication}">
+    <p>Leave application not found.</p>
+</div>
+</body>
+</html>

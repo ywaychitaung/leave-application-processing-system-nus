@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Leave Application</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
-    <h1>Leave Application</h1>
+<body class="p-16">
+    <h1 class="text-center">Leave Application</h1>
 
-    <div class="flex flex-col">
-        <form action="/leave-application/store" method="post" id="leaveApplication">
-            <div>
+    <div class="flex flex-col items-center justify-center">
+        <form action="/leave-application/store" method="post" id="leaveApplication" class="space-y-6">
+            <div class="mt-16">
                 <label for="leaveTypeId">Leave Type Id</label>
                 <input type="number" name="leaveTypeId" id="leaveTypeId">
             </div>
@@ -29,7 +30,7 @@
                 <textarea name="leaveReason" id="leaveReason" cols="30" rows="10"></textarea>
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">Submit</button>
         </form>
     </div>
 </body>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{/static/style.css}" />
 </head>
-<body>
+<body class="p-16">
 <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
@@ -14,7 +14,7 @@
         </div>
         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
             <a href="/leave-application/create">
-                <button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit new leave application</button>
+                <button type="button" class="block rounded-md bg-teal-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit new leave application</button>
             </a>
         </div>
     </div>
@@ -51,13 +51,13 @@
                         <td th:text="${leaveApplication.leaveStatus}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
                         <td th:text="${leaveApplication.leaveReason}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                            <a href="#" class="text-teal-500 hover:text-teal-900">Detail</a>
+                            <a th:href="@{'/leave-application/details/' + ${leaveApplication.leaveApplicationId}}" class="text-teal-500 hover:text-teal-900">Detail</a>
                         </td>
-                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                            <a href="#" class="text-yellow-500 hover:text-yellow-900">Edit</a>
+                        <td th:if="${leaveApplication.leaveStatus != 'Cancelled'}" class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
+                            <a th:href="@{'/leave-application/edit/' + ${leaveApplication.leaveApplicationId}}" class="text-yellow-500 hover:text-yellow-900">Edit</a>
                         </td>
-                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                            <a href="#" class="text-red-500 hover:text-red-900">Cancel</a>
+                        <td th:if="${leaveApplication.leaveStatus != 'Cancelled'}" class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                            <a th:href="@{'/leave-application/cancel/' + ${leaveApplication.leaveApplicationId}}" class="text-red-500 hover:text-red-900">Cancel</a>
                         </td>
                     </tr>
                     </tbody>
