@@ -14,7 +14,8 @@ public class User {
     private String username;
     private String password;
     private Integer roleId;
-
+    // added Role into User
+    private ApplicationConstants.UserRole role;
     public User() {
     }
 
