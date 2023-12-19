@@ -56,4 +56,12 @@ public class User {
     public Integer getRoleId() { return roleId; }
 
     public void setRoleId(Integer roleId) { this.roleId = roleId; }
+
+    public ApplicationConstants.UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(ApplicationConstants.UserRole role) {
+        this.role = role;
+    }
 }
