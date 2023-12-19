@@ -17,11 +17,9 @@ public class LeaveEntitlement {
     @Column(name = "compensation_leave_remaining")
     private Integer compensationLeaveRemaining;
 
-    // Default constructor
     public LeaveEntitlement() {
     }
 
-    // Constructor with fields
     public LeaveEntitlement(Integer userId, Integer annualLeaveRemaining, Integer medicalLeaveRemaining, Integer compensationLeaveRemaining) {
         this.userId = userId;
         this.annualLeaveRemaining = annualLeaveRemaining;
@@ -29,10 +27,35 @@ public class LeaveEntitlement {
         this.compensationLeaveRemaining = compensationLeaveRemaining;
     }
 
-    // Getters and Setters
-    // ...
+    public Integer getUserId() {
+        return userId;
+    }
 
-    // Other methods if needed
-    // ...
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getAnnualLeaveRemaining() {
+        return annualLeaveRemaining;
+    }
+
+    public void setAnnualLeaveRemaining(Integer annualLeaveRemaining) {
+        this.annualLeaveRemaining = annualLeaveRemaining;
+    }
+
+    public Integer getMedicalLeaveRemaining() {
+        return medicalLeaveRemaining;
+    }
+
+    public void setMedicalLeaveRemaining(Integer medicalLeaveRemaining) {
+        this.medicalLeaveRemaining = medicalLeaveRemaining;
+    }
+
+    public Integer getCompensationLeaveRemaining() {
+        return compensationLeaveRemaining;
+    }
+
+    public void setCompensationLeaveRemaining(Integer compensationLeaveRemaining) {
+        this.compensationLeaveRemaining = compensationLeaveRemaining;
+    }
 }
-
