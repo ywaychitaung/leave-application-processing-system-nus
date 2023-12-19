@@ -307,7 +307,7 @@
                     <div class="mt-16">
                         <label for="leaveTypeId">Leave Type</label>
                         <select name="leaveTypeId" id="leaveTypeId">
-                            <option th:each="leaveType : ${leaveTypes}" th:value="${leaveType.leaveTypeId}" th:text="${leaveType.leaveTypeName}"></option>
+                            <option th:each="leaveType : ${leaveTypes}" th:value="${leaveType.leaveTypeId}" th:text="${leaveType.leaveTypeName}" th:selected="${leaveType.leaveTypeId == leaveApplication.leaveTypeId}"></option>
                         </select>
                     </div>
 
