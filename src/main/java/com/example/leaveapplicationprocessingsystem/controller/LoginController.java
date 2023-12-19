@@ -28,14 +28,7 @@ public class LoginController {
         // Login Service: Check the user credentials and return home if successful else return login with error message
         // 登录服务：检查用户凭据并在成功时返回主页，否则返回带有错误消息的登录
         if (loginService.login(email, password, session)) {
-            model.addAttribute("email", session.getAttribute("email"));
-            model.addAttribute("firstName", session.getAttribute("firstName"));
-            model.addAttribute("lastName", session.getAttribute("lastName"));
-            model.addAttribute("username", session.getAttribute("username"));
-            model.addAttribute("userId", session.getAttribute("userId"));
-            model.addAttribute("roleId", session.getAttribute("roleId"));
-            model.addAttribute("pageTitle", "Dashboard");
-            return "dashboard"; // Name of the success view
+            return "redirect:/dashboard"; // Name of the success view
         } else {
             model.addAttribute("error", "Invalid credentials");
             return "login"; // Name of the login view with error message
