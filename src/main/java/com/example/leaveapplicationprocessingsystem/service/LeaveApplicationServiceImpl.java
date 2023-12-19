@@ -2,6 +2,7 @@ package com.example.leaveapplicationprocessingsystem.service;
 
 import com.example.leaveapplicationprocessingsystem.entity.LeaveApplication;
 import com.example.leaveapplicationprocessingsystem.repository.LeaveApplicationRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,14 +34,14 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 
     @Override
     @Transactional
-    public LeaveApplication store(LeaveApplication leaveApplication) {
+    public LeaveApplication store(LeaveApplication leaveApplication, HttpSession session) {
         //  Set the leave status to "Applied"
         // 将请假状态设置为“已申请”
         leaveApplication.setLeaveStatus("Applied");
 
-        // Set the user id to 1 (for testing purpose)
-        // 将用户ID设置为1（用于测试目的）
-        leaveApplication.setUserId(1);
+        // Set the user ID from the session
+        // 从会话中设置用户 ID
+        leaveApplication.setUserId((Integer) session.getAttribute("userId"));
 
         //  Save the leave application
         // 保存请假申请

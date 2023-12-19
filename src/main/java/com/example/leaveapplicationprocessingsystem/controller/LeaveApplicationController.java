@@ -62,6 +62,7 @@ public class LeaveApplicationController {
     // ModelAttribute: Bind the form data to the LeaveApplication object
     // ModelAttribute：将表单数据绑定到  LeaveApplication对象
     public String store(@ModelAttribute LeaveApplication leaveApplication,
+                        HttpSession session,
                         BindingResult bindingResult) {
         //  Validate the form data
         //  验证表单数据
@@ -69,7 +70,7 @@ public class LeaveApplicationController {
 
         //  Save the leave application
         //  保存请假申请
-        leaveApplicationService.store(leaveApplication);
+        leaveApplicationService.store(leaveApplication, session);
 
         //  Redirect to the home page
         //  重定向到主页

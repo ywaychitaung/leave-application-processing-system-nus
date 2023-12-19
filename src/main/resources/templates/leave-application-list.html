@@ -327,13 +327,7 @@
                                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
                                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Reason</th>
                                         <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                            <span class="sr-only">Detail</span>
-                                        </th>
-                                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                            <span class="sr-only">Edit</span>
-                                        </th>
-                                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                            <span class="sr-only">Cancel</span>
+                                            <span class="sr-only">View Detail</span>
                                         </th>
                                     </tr>
                                     </thead>
@@ -346,13 +340,7 @@
                                         <td th:text="${leaveApplication.leaveStatus}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
                                         <td th:text="${leaveApplication.leaveReason}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member</td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                                            <a th:href="@{'/leave-application/details/' + ${leaveApplication.leaveApplicationId}}" class="text-teal-500 hover:text-teal-900">Detail</a>
-                                        </td>
-                                        <td th:if="${leaveApplication.leaveStatus != 'Cancelled'}" class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                                            <a th:href="@{'/leave-application/edit/' + ${leaveApplication.leaveApplicationId}}" class="text-yellow-500 hover:text-yellow-900">Edit</a>
-                                        </td>
-                                        <td th:if="${leaveApplication.leaveStatus != 'Cancelled'}" class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <a th:href="@{'/leave-application/cancel/' + ${leaveApplication.leaveApplicationId}}" class="text-red-500 hover:text-red-900">Cancel</a>
+                                            <a th:href="@{'/leave-application/details/' + ${leaveApplication.leaveApplicationId}}" class="text-teal-500 hover:text-teal-900 hover:underline">View Details</a>
                                         </td>
                                     </tr>
                                     </tbody>

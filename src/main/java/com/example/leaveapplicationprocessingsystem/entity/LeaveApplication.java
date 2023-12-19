@@ -17,6 +17,8 @@ public class LeaveApplication {
     private LocalDate endDate;
     private String leaveReason;
     private String leaveStatus;
+    private String workDissemination;
+    private String contactDetails;
 
     public LeaveApplication() {}
 
@@ -26,7 +28,9 @@ public class LeaveApplication {
                             LocalDate startDate,
                             LocalDate endDate,
                             String leaveReason,
-                            String leaveStatus) {
+                            String leaveStatus,
+                            String workDissemination,
+                            String contactDetails) {
         this.leaveApplicationId = leaveApplicationId;
         this.userId = userId;
         this.leaveTypeId = leaveTypeId;
@@ -34,6 +38,8 @@ public class LeaveApplication {
         this.endDate = endDate;
         this.leaveReason = leaveReason;
         this.leaveStatus = leaveStatus;
+        this.workDissemination = workDissemination;
+        this.contactDetails = contactDetails;
     }
 
     public Integer getLeaveApplicationId() { return leaveApplicationId; }
@@ -63,4 +69,12 @@ public class LeaveApplication {
     public String getLeaveStatus() { return leaveStatus; }
 
     public void setLeaveStatus(String leaveStatus) { this.leaveStatus = leaveStatus; }
+
+    public String getWorkDissemination() { return workDissemination; }
+
+    public void setWorkDissemination(String workDissemination) { this.workDissemination = workDissemination; }
+
+    public String getContactDetails() { return contactDetails; }
+
+    public void setContactDetails(String contactDetails) { this.contactDetails = contactDetails; }
 }

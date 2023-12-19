@@ -1,6 +1,7 @@
 package com.example.leaveapplicationprocessingsystem.service;
 
 import com.example.leaveapplicationprocessingsystem.entity.LeaveApplication;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +15,7 @@ public interface LeaveApplicationService {
 
     // Store the leave application
     // 存储请假申请
-    LeaveApplication store(LeaveApplication leaveApplication);
+    LeaveApplication store(LeaveApplication leaveApplication, HttpSession session);
 
     // Find the leave application by leave application id
     // 通过请假申请 id 查找请假申请
