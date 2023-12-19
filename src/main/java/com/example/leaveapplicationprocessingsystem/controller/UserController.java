@@ -32,8 +32,8 @@ public class UserController {
         return userService.changeEmail(userId, newEmail);
     }
 
-    @PutMapping("/changeRole/{userId}")
-    public User changeRole(@PathVariable Integer userId, @RequestParam ApplicationConstants.UserRole newRole) {
-        return userService.changeRole(userId, newRole);
+    @PutMapping("/changeRole/{adminUserId}/{userId}")
+    public User changeRole(@PathVariable Integer adminUserId, @PathVariable Integer userId, @RequestParam ApplicationConstants.UserRole newRole) {
+        return userService.changeRole(adminUserId, userId, newRole);
     }
 }

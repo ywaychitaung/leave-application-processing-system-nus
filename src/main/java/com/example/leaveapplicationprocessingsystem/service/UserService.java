@@ -54,8 +54,18 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User changeRole(Integer userId, ApplicationConstants.UserRole newRole) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public User changeRole(Integer adminUserId, Integer userId, ApplicationConstants.UserRole newRole) {
+        User adminUser = userRepository.findById(adminUserId)
+                .orElseThrow(() -> new RuntimeException("Admin User not found"));
+
+        // 检查是否为管理员
+        if (adminUser.getRole() != ApplicationConstants.UserRole.ADMINISTRATORS) {
+            throw new RuntimeException("Only Administrators can change user roles");
+        }
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         user.setRole(newRole);
         return userRepository.save(user);
     }
