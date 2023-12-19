@@ -23,6 +23,8 @@ public class LeaveApplicationController {
         model.addAttribute("firstName", session.getAttribute("firstName"));
         model.addAttribute("lastName", session.getAttribute("lastName"));
 
+        // Type cast the user ID to Integer
+        // 将用户 ID 强制转换为 Integer
         Integer userId = (Integer) session.getAttribute("userId");
 
         // Find all leave applications by user ID
@@ -47,8 +49,8 @@ public class LeaveApplicationController {
         model.addAttribute("firstName", session.getAttribute("firstName"));
         model.addAttribute("lastName", session.getAttribute("lastName"));
 
-        // Get all roles
-        // 获取所有角色
+        // Get all leave types
+        // 获取所有请假类型
         model.addAttribute("leaveTypes", leaveTypeService.getAllLeaveTypes());
 
         //  Create a new leave application
@@ -78,6 +80,10 @@ public class LeaveApplicationController {
     public String edit(@PathVariable Integer id, HttpSession session, Model model) {
         model.addAttribute("firstName", session.getAttribute("firstName"));
         model.addAttribute("lastName", session.getAttribute("lastName"));
+
+        // Get all leave types
+        // 获取所有请假类型
+        model.addAttribute("leaveTypes", leaveTypeService.getAllLeaveTypes());
 
         // Find the leave application by ID
         // 通过 ID 查找请假申请

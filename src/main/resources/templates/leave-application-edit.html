@@ -305,8 +305,10 @@
             <div class="flex items-center justify-center">
                 <form th:action="@{/leave-application/update}" th:object="${leaveApplication}" method="post" class="space-y-6">
                     <div class="mt-16">
-                        <label for="leaveTypeId">Leave Type ID:</label>
-                        <input type="number" id="leaveTypeId" th:field="*{leaveTypeId}" required/>
+                        <label for="leaveTypeId">Leave Type</label>
+                        <select name="leaveTypeId" id="leaveTypeId">
+                            <option th:each="leaveType : ${leaveTypes}" th:value="${leaveType.leaveTypeId}" th:text="${leaveType.leaveTypeName}"></option>
+                        </select>
                     </div>
 
                     <div>
