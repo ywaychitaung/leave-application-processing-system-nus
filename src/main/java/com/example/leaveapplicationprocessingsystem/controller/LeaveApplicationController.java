@@ -3,7 +3,6 @@ package com.example.leaveapplicationprocessingsystem.controller;
 import com.example.leaveapplicationprocessingsystem.entity.LeaveApplication;
 import com.example.leaveapplicationprocessingsystem.service.LeaveApplicationService;
 import com.example.leaveapplicationprocessingsystem.service.LeaveTypeService;
-import com.example.leaveapplicationprocessingsystem.service.RoleService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,7 +61,6 @@ public class LeaveApplicationController {
     // ModelAttribute：将表单数据绑定到  LeaveApplication对象
     public String store(@ModelAttribute LeaveApplication leaveApplication,
                         BindingResult bindingResult) {
-
         //  Validate the form data
         //  验证表单数据
         if (bindingResult.hasErrors()) { return "leave-application"; }
