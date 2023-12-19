@@ -1,10 +1,11 @@
 package com.example.leaveapplicationprocessingsystem.controller;
 
+import com.example.leaveapplicationprocessingsystem.service.LeaveEntitlementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin/leave-entitlement")
+@RequestMapping("/leaveEntitlement")
 public class LeaveEntitlementController {
 
     private final LeaveEntitlementService leaveEntitlementService;
@@ -14,16 +15,18 @@ public class LeaveEntitlementController {
         this.leaveEntitlementService = leaveEntitlementService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<LeaveEntitlement>> getAllEntitlements() {
-        return ResponseEntity.ok(leaveEntitlementService.findAll());
+    @PutMapping("/update/annual/{userId}")
+    public void updateAnnualLeave(@PathVariable Integer userId, @RequestParam Integer annualLeave) {
+        leaveEntitlementService.updateAnnualLeave(userId, annualLeave);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<LeaveEntitlement> updateEntitlement(@PathVariable Long id, @RequestBody LeaveEntitlement entitlement, @PathVariable String id) {
-        return ResponseEntity.ok(leaveEntitlementService.updateEntitlement(id, entitlement));
+    @PutMapping("/update/medical/{userId}")
+    public void updateMedicalLeave(@PathVariable Integer userId, @RequestParam Integer medicalLeave) {
+        leaveEntitlementService.updateMedicalLeave(userId, medicalLeave);
     }
 
-    // Additional endpoints as needed
+    @PutMapping("/update/compensation/{userId}")
+    public void updateCompensationLeave(@PathVariable Integer userId, @RequestParam Integer compensationLeave) {
+        leaveEntitlementService.updateCompensationLeave(userId, compensationLeave);
+    }
 }
-
