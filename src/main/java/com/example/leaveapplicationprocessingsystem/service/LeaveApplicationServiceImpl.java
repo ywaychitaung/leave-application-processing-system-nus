@@ -50,7 +50,7 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 
     @Override
     @Transactional
-    public LeaveApplication update(LeaveApplication leaveApplication) {
+    public LeaveApplication update(LeaveApplication leaveApplication, HttpSession session) {
         //  Find the leave application by ID
         //  通过 ID 查找请假申请
         LeaveApplication leaveApplicationToUpdate = leaveApplicationRepository.findByLeaveApplicationId(leaveApplication.getLeaveApplicationId());
@@ -61,6 +61,10 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
         leaveApplicationToUpdate.setStartDate(leaveApplication.getStartDate());
         leaveApplicationToUpdate.setEndDate(leaveApplication.getEndDate());
         leaveApplicationToUpdate.setLeaveReason(leaveApplication.getLeaveReason());
+        leaveApplicationToUpdate.setWorkDissemination(leaveApplication.getWorkDissemination());
+        leaveApplicationToUpdate.setContactDetails(leaveApplication.getContactDetails());
+        leaveApplicationToUpdate.setLeaveStatus("Updated");
+        leaveApplicationToUpdate.setUserId((Integer) session.getAttribute("userId"));
 
         //  Save the leave application
         //  保存请假申请

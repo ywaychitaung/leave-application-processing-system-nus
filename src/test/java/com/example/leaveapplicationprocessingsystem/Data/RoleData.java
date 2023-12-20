@@ -14,9 +14,9 @@ public class RoleData {
 
     @Test
     public void createRoleData() {
-        Role adminRole = new Role(1, "ADMIN");
-        Role userRole = new Role(2, "EMPLOYEE");
-        Role guestRole = new Role(3, "MANAGER");
+        Role adminRole = new Role(1, "Admin");
+        Role userRole = new Role(2, "Employee");
+        Role guestRole = new Role(3, "Manager");
 
         roleRepository.save(adminRole);
         roleRepository.save(userRole);

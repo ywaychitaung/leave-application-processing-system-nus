@@ -23,7 +23,7 @@ public interface LeaveApplicationService {
 
     // Update the leave application
     // 更新请假申请
-    LeaveApplication update(LeaveApplication leaveApplication);
+    LeaveApplication update(LeaveApplication leaveApplication, HttpSession session);
 
     // Cancel the leave application
     // 取消请假申请

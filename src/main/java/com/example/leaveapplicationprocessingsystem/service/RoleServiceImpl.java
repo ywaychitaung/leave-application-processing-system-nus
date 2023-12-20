@@ -20,4 +20,12 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
+
+    // Get role name by role ID
+    // 通过角色 ID 获取角色名称
+    @Override
+    @Transactional
+    public Role getRoleNameByRoleId(Integer roleId) {
+        return roleRepository.findByRoleId(roleId);
+    }
 }
