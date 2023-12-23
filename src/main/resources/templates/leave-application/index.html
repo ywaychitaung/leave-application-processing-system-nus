@@ -47,7 +47,7 @@
                                             <td th:text="${leaveApplication.leaveApplicationId}" class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <span th:each="leaveType : ${leaveTypes}">
-                                                    <span th:if="${leaveType.getLeaveTypeId() == leaveApplication.leaveTypeId}" th:text="${leaveType.getLeaveTypeName()}"></span>
+                                                    <span th:if="${leaveType.leaveTypeId == leaveApplication.leaveTypeId}" th:text="${leaveType.leaveTypeName}"></span>
                                                 </span>
                                             </td>
                                             <td th:text="${leaveApplication.startDate}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>

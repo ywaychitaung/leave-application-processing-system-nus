@@ -7,8 +7,10 @@ import jakarta.persistence.*;
 public class LeaveType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="leave_type_id")
     private Integer leaveTypeId;
 
+    @Column(name="leave_type_name")
     private String leaveTypeName;
 
     public LeaveType() {}

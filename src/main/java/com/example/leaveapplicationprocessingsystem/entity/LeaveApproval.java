@@ -1,33 +1,33 @@
 package com.example.leaveapplicationprocessingsystem.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "leave_approvals")
 public class LeaveApproval {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="approval_id")
     private Integer approvalId;
 
+    @Column(name="leave_application_id", insertable=false, updatable=false)
     private Integer leaveApplicationId;
 
-    private String status;
+    @Column(name="leave_status")
+    private String leaveStatus;
 
+    @Column(name="comment")
     private String comment;
 
     public LeaveApproval() {}
 
     public LeaveApproval(Integer approvalId,
                          Integer leaveApplicationId,
-                         String status,
+                         String leaveStatus,
                          String comment) {
         this.approvalId = approvalId;
         this.leaveApplicationId = leaveApplicationId;
-        this.status = status;
+        this.leaveStatus = leaveStatus;
         this.comment = comment;
     }
 
@@ -47,12 +47,12 @@ public class LeaveApproval {
         this.leaveApplicationId = leaveApplicationId;
     }
 
-    public String getStatus() {
-        return status;
+    public String getLeaveStatus() {
+        return leaveStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setLeaveStatus(String leaveStatus) {
+        this.leaveStatus = leaveStatus;
     }
 
     public String getComment() {

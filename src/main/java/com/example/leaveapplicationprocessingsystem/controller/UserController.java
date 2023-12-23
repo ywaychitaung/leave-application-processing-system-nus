@@ -1,39 +1,77 @@
 package com.example.leaveapplicationprocessingsystem.controller;
 
-import com.example.leaveapplicationprocessingsystem.entity.ApplicationConstants;
 import com.example.leaveapplicationprocessingsystem.entity.User;
+import com.example.leaveapplicationprocessingsystem.service.RoleService;
 import com.example.leaveapplicationprocessingsystem.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@RequestMapping("/user")
+import java.util.HashMap;
+import java.util.Map;
+
+@Controller
 public class UserController {
-
-    private final UserService userService;
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    private UserService userService;
+
+    @GetMapping("/users")
+    public String index(HttpSession session, Model model) {
+        model.addAttribute("admins", userService.findByRoleId(1));
+        model.addAttribute("employees", userService.findByRoleId(2));
+        model.addAttribute("managers", userService.findByRoleId(3));
+
+        model.addAttribute("firstName", session.getAttribute("firstName"));
+        model.addAttribute("lastName", session.getAttribute("lastName"));
+
+        // Get role name by role ID
+        // 通过角色 ID 获取角色名称
+        String roleName = roleService.getRoleNameByRoleId((Integer) session.getAttribute("roleId")).getRoleName();
+
+        // Add the role name to the model
+        // 将角色名称添加到模型中
+        model.addAttribute("roleName", roleName);
+
+        return "user/index";
     }
 
-    @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
-        return userService.registerUser(user);
+    @GetMapping("/user/create")
+    public String create(HttpSession session, Model model) {
+        model.addAttribute("firstName", session.getAttribute("firstName"));
+        model.addAttribute("lastName", session.getAttribute("lastName"));
+
+        // Get role name by role ID
+        // 通过角色 ID 获取角色名称
+        String roleName = roleService.getRoleNameByRoleId((Integer) session.getAttribute("roleId")).getRoleName();
+
+        // Add the role name to the model
+        // 将角色名称添加到模型中
+        model.addAttribute("roleName", roleName);
+
+        model.addAttribute("roles", roleService.getAllRoles());
+
+        return "user/create";
     }
 
-    @PutMapping("/changePassword/{userId}")
-    public User changePassword(@PathVariable Integer userId, @RequestParam String newPassword) {
-        return userService.changePassword(userId, newPassword);
-    }
+    @PostMapping("/user/store")
+    // ModelAttribute: Bind the form data to the LeaveApplication object
+    // ModelAttribute：将表单数据绑定到  LeaveApplication对象
+    public String store(@ModelAttribute User user,
+                        HttpSession session) {
+        //  Save the leave application
+        //  保存请假申请
+        userService.store(user, session);
 
-    @PutMapping("/changeEmail/{userId}")
-    public User changeEmail(@PathVariable Integer userId, @RequestParam String newEmail) {
-        return userService.changeEmail(userId, newEmail);
-    }
-
-    @PutMapping("/changeRole/{adminUserId}/{userId}")
-    public User changeRole(@PathVariable Integer adminUserId, @PathVariable Integer userId, @RequestParam ApplicationConstants.UserRole newRole) {
-        return userService.changeRole(adminUserId, userId, newRole);
+        //  Redirect to the home page
+        //  重定向到主页
+        return "redirect:/users";
     }
 }

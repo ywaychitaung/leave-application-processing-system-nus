@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a new Holiday</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<div th:replace="~{fragments/nav-mobile.html :: content}"></div>
+<div th:replace="~{fragments/nav-static-side-bar-desktop.html :: content}"></div>
+
+<div class="lg:pl-72">
+    <div th:replace="~{fragments/nav-sticky-desktop.html :: content}"></div>
+    <main class="py-10">
+        <h3 class="text-xl font-semibold text-center mb-16">Add Holiday</h3>
+
+        <div class="border-b border-gray-900/10 px-8 pb-12">
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Holiday Information</h2>
+            <p class="mt-1 text-sm leading-6 text-red-600">(*) fields are mandatory.</p>
+
+            <form th:action="@{/holiday/store}" method="POST">
+                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                    <div class="sm:col-span-3">
+                        <label for="publicHolidayName" class="block text-sm font-medium leading-6 text-gray-900">Public Holiday Name <span class="text-red-600">*</span></label>
+                        <div class="mt-2">
+                            <input type="text" name="publicHolidayName" id="publicHolidayName" autocomplete="firstName" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label for="publicHolidayDescription" class="block text-sm font-medium leading-6 text-gray-900">Public Holiday Description</label>
+                        <div class="mt-2">
+                            <input type="text" name="publicHolidayDescription" id="publicHolidayDescription" autocomplete="firstName" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label for="publicHolidayDate" class="block text-sm font-medium leading-6 text-gray-900">Public Holiday Date <span class="text-red-600">*</span></label>
+                        <div class="mt-2">
+                            <input type="date" th:min="${startOfYear}" th:max="${endOfYear}" name="publicHolidayDate" id="publicHolidayDate" autocomplete="firstName" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center mt-16">
+                    <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">Submit</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

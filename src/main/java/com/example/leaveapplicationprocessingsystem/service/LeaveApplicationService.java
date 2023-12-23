@@ -7,11 +7,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public interface LeaveApplicationService {
     // Find the leave application by id
     // 通过 id 查找请假申请
     List<LeaveApplication> findAllByUserId(Integer userId);
+
+    // Find the leave application by manager id
+    // 通过经理 id 查找请假申请
+    List<LeaveApplication> getLeaveApplicationsByManager(Integer managerId);
+
+    // Group the leave applications by employee
+    // 通过员工分组请假申请
+    Map<Integer, List<LeaveApplication>> getLeaveApplicationsGroupedByEmployee(List<Integer> employeeIds);
 
     // Store the leave application
     // 存储请假申请

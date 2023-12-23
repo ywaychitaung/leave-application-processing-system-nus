@@ -81,7 +81,7 @@ public class LeaveApplicationController {
         return "leave-application/show";
     }
 
-    @RequestMapping("/leave-application/create")
+    @GetMapping("/leave-application/create")
     public String create(HttpSession session, Model model) {
         model.addAttribute("firstName", session.getAttribute("firstName"));
         model.addAttribute("lastName", session.getAttribute("lastName"));
@@ -103,7 +103,7 @@ public class LeaveApplicationController {
         return "leave-application/create";
     }
 
-    @RequestMapping("/leave-application/store")
+    @PostMapping("/leave-application/store")
     // ModelAttribute: Bind the form data to the LeaveApplication object
     // ModelAttribute：将表单数据绑定到  LeaveApplication对象
     public String store(@ModelAttribute LeaveApplication leaveApplication,

@@ -2,40 +2,29 @@ package com.example.leaveapplicationprocessingsystem.service;
 
 import com.example.leaveapplicationprocessingsystem.entity.LeaveEntitlement;
 import com.example.leaveapplicationprocessingsystem.repository.LeaveEntitlementRepository;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class LeaveEntitlementServiceImpl implements LeaveEntitlementService {
-    private final LeaveEntitlementRepository leaveEntitlementRepository;
+public class LeaveEntitlementServiceImpl implements LeaveEntitlementService{
+    @Autowired
+    private LeaveEntitlementRepository leaveEntitlementRepository;
 
-    public LeaveEntitlementServiceImpl(LeaveEntitlementRepository leaveEntitlementRepository) {
-        this.leaveEntitlementRepository = leaveEntitlementRepository;
+    @Override
+    public List<LeaveEntitlement> getAllLeaveEntitlements() {
+        return leaveEntitlementRepository.findAll();
     }
 
-    // Create the entitlement of a user
-    public LeaveEntitlement updateAnnualLeave(Integer userId, Integer annualLeave) {
-        LeaveEntitlement entitlement = getEntitlement(userId);
-        entitlement.setAnnualLeaveRemaining(annualLeave);
-        return leaveEntitlementRepository.save(entitlement);
+    @Override
+    public LeaveEntitlement getLeaveEntitlementByRoleId(Integer roleId) {
+        return leaveEntitlementRepository.findById(roleId).orElse(null);
     }
 
-    // Update the medical leave of a user
-    public LeaveEntitlement updateMedicalLeave(Integer userId, Integer medicalLeave) {
-        LeaveEntitlement entitlement = getEntitlement(userId);
-        entitlement.setMedicalLeaveRemaining(medicalLeave);
-        return leaveEntitlementRepository.save(entitlement);
-    }
-
-    // Update the compensation leave of a user
-    public LeaveEntitlement updateCompensationLeave(Integer userId, Integer compensationLeave) {
-        LeaveEntitlement entitlement = getEntitlement(userId);
-        entitlement.setCompensationLeaveRemaining(compensationLeave);
-        return leaveEntitlementRepository.save(entitlement);
-    }
-
-    // Get the entitlement of a user
-    public LeaveEntitlement getEntitlement(Integer userId) {
-        return leaveEntitlementRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    @Override
+    public LeaveEntitlement store(LeaveEntitlement leaveEntitlement) {
+        return leaveEntitlementRepository.saveAndFlush(leaveEntitlement);
     }
 }

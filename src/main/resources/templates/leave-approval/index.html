@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-white">
+<head>
+    <meta charset="UTF-8">
+    <title>View Personal Leave History</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body class="h-full">
+<div>
+    <div th:replace="~{fragments/nav-mobile.html :: content}"></div>
+    <div th:replace="~{fragments/nav-static-side-bar-desktop.html :: content}"></div>
+
+    <div class="lg:pl-72">
+        <div th:replace="~{fragments/nav-sticky-desktop.html :: content}"></div>
+
+        <main class="py-10">
+            <h1 class="text-xl font-semibold leading-6 text-center text-gray-900 mb-16">Leave Applications</h1>
+
+            <div th:each="entry : ${leaveApplicationsByEmployee}" class="px-4 sm:px-6 lg:px-8 mb-16">
+                <div class="sm:flex sm:items-center">
+                    <div class="sm:flex-auto">
+                        <h1 th:text="'User ID: ' + ${entry.key}" class="text-base font-semibold leading-6 text-gray-900"></h1>
+                        <p class="mt-2 text-sm text-gray-700">Here is the user's leave application forms.</p>
+                    </div>
+                </div>
+                <div class="mt-8 flow-root">
+                    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-300">
+                                    <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Application ID</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Leave Type Name</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Start Date</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">End Date</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+                                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                                            <span class="sr-only">View Detail</span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                    <tr th:each="leaveApplication : ${entry.value}">
+                                        <td th:text="${leaveApplication.leaveApplicationId}" class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"></td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                <span th:each="leaveType : ${leaveTypes}">
+                                                    <span th:if="${leaveType.leaveTypeId == leaveApplication.leaveTypeId}" th:text="${leaveType.leaveTypeName}"></span>
+                                                </span>
+                                        </td>
+                                        <td th:text="${leaveApplication.startDate}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
+                                        <td th:text="${leaveApplication.endDate}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
+                                        <td th:text="${leaveApplication.leaveStatus}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
+                                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
+                                            <a th:href="@{'/leave-application/approvals/' + ${leaveApplication.leaveApplicationId}}" class="text-teal-500 hover:text-teal-900 hover:underline">View Details</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

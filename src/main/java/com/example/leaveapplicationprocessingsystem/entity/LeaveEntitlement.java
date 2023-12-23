@@ -3,59 +3,72 @@ package com.example.leaveapplicationprocessingsystem.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "leave_entitlement")
+@Table(name = "leave_entitlements")
 public class LeaveEntitlement {
     @Id
-    private Integer userId;  // Assuming this is a foreign key referencing the User table
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "leave_entitlement_id")
+    private Integer leaveEntitlementId;
 
-    @Column(name = "annual_leave_remaining")
-    private Integer annualLeaveRemaining;
+    @Column(name="role_id", insertable=false, updatable=false)
+    private Integer roleId;  // Assuming this is a foreign key referencing the User table
 
-    @Column(name = "medical_leave_remaining")
-    private Integer medicalLeaveRemaining;
+    @Column(name = "annual_leave")
+    private Integer annualLeave;
 
-    @Column(name = "compensation_leave_remaining")
-    private Integer compensationLeaveRemaining;
+    @Column(name = "medical_leave")
+    private Integer medicalLeave;
 
-    public LeaveEntitlement() {
+    @Column(name = "compensation_leave")
+    private Integer compensationLeave;
+
+    public LeaveEntitlement() {}
+
+    public LeaveEntitlement(Integer leaveEntitlementId,Integer roleId, Integer annualLeaveRemaining, Integer medicalLeaveRemaining, Integer compensationLeaveRemaining) {
+        this.leaveEntitlementId = leaveEntitlementId;
+        this.roleId = roleId;
+        this.annualLeave = annualLeaveRemaining;
+        this.medicalLeave = medicalLeaveRemaining;
+        this.compensationLeave = compensationLeaveRemaining;
     }
 
-    public LeaveEntitlement(Integer userId, Integer annualLeaveRemaining, Integer medicalLeaveRemaining, Integer compensationLeaveRemaining) {
-        this.userId = userId;
-        this.annualLeaveRemaining = annualLeaveRemaining;
-        this.medicalLeaveRemaining = medicalLeaveRemaining;
-        this.compensationLeaveRemaining = compensationLeaveRemaining;
+    public Integer getLeaveEntitlementId() {
+        return leaveEntitlementId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public void setLeaveEntitlementId(Integer leaveEntitlementId) {
+        this.leaveEntitlementId = leaveEntitlementId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public Integer getAnnualLeaveRemaining() {
-        return annualLeaveRemaining;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public void setAnnualLeaveRemaining(Integer annualLeaveRemaining) {
-        this.annualLeaveRemaining = annualLeaveRemaining;
+    public Integer getAnnualLeave() {
+        return annualLeave;
     }
 
-    public Integer getMedicalLeaveRemaining() {
-        return medicalLeaveRemaining;
+    public void setAnnualLeave(Integer annualLeaveRemaining) {
+        this.annualLeave = annualLeaveRemaining;
     }
 
-    public void setMedicalLeaveRemaining(Integer medicalLeaveRemaining) {
-        this.medicalLeaveRemaining = medicalLeaveRemaining;
+    public Integer getMedicalLeave() {
+        return medicalLeave;
     }
 
-    public Integer getCompensationLeaveRemaining() {
-        return compensationLeaveRemaining;
+    public void setMedicalLeave(Integer medicalLeaveRemaining) {
+        this.medicalLeave = medicalLeaveRemaining;
     }
 
-    public void setCompensationLeaveRemaining(Integer compensationLeaveRemaining) {
-        this.compensationLeaveRemaining = compensationLeaveRemaining;
+    public Integer getCompensationLeave() {
+        return compensationLeave;
+    }
+
+    public void setCompensationLeave(Integer compensationLeaveRemaining) {
+        this.compensationLeave = compensationLeaveRemaining;
     }
 }

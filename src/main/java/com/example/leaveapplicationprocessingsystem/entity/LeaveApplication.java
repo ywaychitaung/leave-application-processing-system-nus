@@ -9,16 +9,36 @@ import java.time.LocalDate;
 public class LeaveApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="leave_application_id")
     private Integer leaveApplicationId;
 
+    @Column(name="user_id", insertable=false, updatable=false)
     private Integer userId;
+
+    @Column(name="leave_type_id")
     private Integer leaveTypeId;
+
+    @Column(name="start_date")
     private LocalDate startDate;
+
+    @Column(name="end_date")
     private LocalDate endDate;
+
+    @Column(name="leave_reason")
     private String leaveReason;
+
+    @Column(name="leave_status")
     private String leaveStatus;
+
+    @Column(name="work_dissemination")
     private String workDissemination;
+
+    @Column(name="contact_details")
     private String contactDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private Employee employee;
 
     public LeaveApplication() {}
 

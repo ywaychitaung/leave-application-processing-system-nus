@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LeaveApplicationServiceImpl implements LeaveApplicationService {
@@ -25,12 +27,28 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
     }
 
     @Override
+    public List<LeaveApplication> getLeaveApplicationsByManager(Integer managerId) {
+        return leaveApplicationRepository.findByManagerId(managerId);
+    }
+
+    @Override
     @Transactional
     public LeaveApplication findByLeaveApplicationId(Integer leaveApplicationId) {
         //  Find the leave application by ID
         //  通过 ID 查找请假申请
         return leaveApplicationRepository.findByLeaveApplicationId(leaveApplicationId);
     }
+
+    @Override
+    public Map<Integer, List<LeaveApplication>> getLeaveApplicationsGroupedByEmployee(List<Integer> employeeIds) {
+        Map<Integer, List<LeaveApplication>> leaveApplicationsByEmployee = new HashMap<>();
+        for (Integer employeeId : employeeIds) {
+            List<LeaveApplication> leaveApplications = leaveApplicationRepository.findByUserId(employeeId);
+            leaveApplicationsByEmployee.put(employeeId, leaveApplications);
+        }
+        return leaveApplicationsByEmployee;
+    }
+
 
     @Override
     @Transactional
