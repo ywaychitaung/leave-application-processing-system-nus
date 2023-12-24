@@ -5,4 +5,6 @@ import jakarta.servlet.http.HttpSession;
 
 public interface LeaveApprovalService {
     LeaveApproval approveLeave(LeaveApproval leaveApproval, HttpSession session);
+
+    LeaveApproval rejectLeave(LeaveApproval leaveApproval, HttpSession session);
 }

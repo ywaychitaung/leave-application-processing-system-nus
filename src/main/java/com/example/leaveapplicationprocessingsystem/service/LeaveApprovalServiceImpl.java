@@ -11,8 +11,18 @@ public class LeaveApprovalServiceImpl implements LeaveApprovalService {
     @Autowired
     private LeaveApprovalRepository leaveApprovalRepository;
 
+    @Override
     public LeaveApproval approveLeave(LeaveApproval leaveApproval, HttpSession session) {
         leaveApproval.setLeaveStatus("Approved");
+
+        //  Save the leave application
+        // 保存请假申请
+        return leaveApprovalRepository.saveAndFlush(leaveApproval);
+    }
+
+    @Override
+    public LeaveApproval rejectLeave(LeaveApproval leaveApproval, HttpSession session) {
+        leaveApproval.setLeaveStatus("Rejected");
 
         //  Save the leave application
         // 保存请假申请

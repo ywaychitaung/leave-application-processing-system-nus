@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,10 @@ public class LeaveApprovalController {
     public String index(Model model, HttpSession session) {
         model.addAttribute("firstName", session.getAttribute("firstName"));
         model.addAttribute("lastName", session.getAttribute("lastName"));
+
+        // Get all leave types
+        // 获取所有请假类型
+        model.addAttribute("leaveTypes", leaveTypeService.getAllLeaveTypes());
 
         // Get role name by role ID
         // 通过角色 ID 获取角色名称
@@ -94,11 +99,24 @@ public class LeaveApprovalController {
         return "leave-approval/show";
     }
 
-    @PostMapping("/leave-application/approve/{id}")
-    public String approveLeave(LeaveApproval leaveApproval, HttpSession session) {
+    @GetMapping("/leave-application/approve/{id}")
+    public String approveLeave(@PathVariable Integer id, LeaveApproval leaveApproval, HttpSession session) {
         // Update the leave application
         // 更新请假申请
         leaveApprovalService.approveLeave(leaveApproval, session);
+
+        leaveApplicationService.changeStatus(id, "Approved");
+
+        return "redirect:/leave-approvals";
+    }
+
+    @GetMapping("/leave-application/reject/{id}")
+    public String rejectLeave(@PathVariable Integer id, LeaveApproval leaveApproval, HttpSession session) {
+        // Update the leave application
+        // 更新请假申请
+        leaveApprovalService.approveLeave(leaveApproval, session);
+
+        leaveApplicationService.changeStatus(id, "Rejected");
 
         return "redirect:/leave-approvals";
     }

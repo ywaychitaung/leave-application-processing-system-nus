@@ -49,6 +49,32 @@ public class LeaveApplicationController {
         return "leave-application/index";
     }
 
+    @PostMapping("/leave-applications")
+    public String index(@RequestParam("userId") String userId, Model model, HttpSession session) {
+        model.addAttribute("firstName", session.getAttribute("firstName"));
+        model.addAttribute("lastName", session.getAttribute("lastName"));
+
+        // Get role name by role ID
+        // 通过角色 ID 获取角色名称
+        String roleName = roleService.getRoleNameByRoleId((Integer) session.getAttribute("roleId")).getRoleName();
+
+        // Add the role name to the model
+        // 将角色名称添加到模型中
+        model.addAttribute("roleName", roleName);
+
+        // Get all leave types
+        // 获取所有请假类型
+        model.addAttribute("leaveTypes", leaveTypeService.getAllLeaveTypes());
+
+        Integer id = Integer.parseInt(userId);
+
+        // Find all leave applications by user ID
+        // 通过用户 ID 查找所有请假申请
+        model.addAttribute("leaveApplications", leaveApplicationService.findAllByUserId(id));
+
+        return "leave-application/index";
+    }
+
     @GetMapping("leave-application/details/{id}")
     public String show(@PathVariable Integer id, HttpSession session, Model model) {
         model.addAttribute("firstName", session.getAttribute("firstName"));
@@ -167,7 +193,7 @@ public class LeaveApplicationController {
         return "leave-application/edit";
     }
 
-    @PostMapping("/leave-application/update")
+    @GetMapping("/leave-application/update")
     public String update(@ModelAttribute LeaveApplication leaveApplication, HttpSession session) {
         //  Update the leave application
         //  更新请假申请
@@ -178,7 +204,18 @@ public class LeaveApplicationController {
         return "redirect:/leave-applications";
     }
 
-    @RequestMapping("/leave-application/cancel/{id}")
+    @GetMapping("/leave-application/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        //  Delete the leave application
+        //  删除请假申请
+        leaveApplicationService.delete(id);
+
+        //  Redirect to the home page
+        //  重定向到主页
+        return "redirect:/leave-applications";
+    }
+
+    @GetMapping("/leave-application/cancel/{id}")
     public String cancel(@PathVariable Integer id) {
         //  Cancel the leave application
         //  取消请假申请

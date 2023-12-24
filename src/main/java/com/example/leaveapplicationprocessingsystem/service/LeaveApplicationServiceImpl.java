@@ -69,10 +69,6 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
         Employee employee = employeeService.findByUserId((Integer) session.getAttribute("userId"));
         leaveApplication.setEmployee(employee);
 
-        System.out.println(session.getAttribute("userId"));
-        System.out.println(employee.getEmployeeId());
-        System.out.println(employee.getUserId());
-
         //  Save the leave application
         // 保存请假申请
         return leaveApplicationRepository.saveAndFlush(leaveApplication);
@@ -103,6 +99,20 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
         return leaveApplicationRepository.saveAndFlush(leaveApplicationToUpdate);
     }
 
+    @Override
+    @Transactional
+    public LeaveApplication delete(Integer leaveApplicationId) {
+        //  Find the leave application by ID
+        //  通过 ID 查找请假申请
+        LeaveApplication leaveApplication = leaveApplicationRepository.findByLeaveApplicationId(leaveApplicationId);
+
+        //  Delete the leave application
+        //  删除请假申请
+        leaveApplicationRepository.delete(leaveApplication);
+
+        return leaveApplication;
+    }
+
 
     @Override
     @Transactional
@@ -114,6 +124,20 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
         //  Set the leave status to "Cancelled"
         //  将请假状态设置为“已取消”
         leaveApplication.setLeaveStatus("Cancelled");
+
+        //  Save the leave application
+        //  保存请假申请
+        return leaveApplicationRepository.saveAndFlush(leaveApplication);
+    }
+
+    public LeaveApplication changeStatus(Integer leaveApplicationId, String leaveStatus) {
+        //  Find the leave application by ID
+        //  通过 ID 查找请假申请
+        LeaveApplication leaveApplication = leaveApplicationRepository.findByLeaveApplicationId(leaveApplicationId);
+
+        //  Set the leave status to "Cancelled"
+        //  将请假状态设置为“已取消”
+        leaveApplication.setLeaveStatus(leaveStatus);
 
         //  Save the leave application
         //  保存请假申请

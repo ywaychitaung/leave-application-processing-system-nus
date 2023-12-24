@@ -39,5 +39,10 @@ public interface LeaveApplicationService {
     // 取消请假申请
     LeaveApplication cancel(Integer leaveApplicationId);
 
+    // Delete the leave application
+    LeaveApplication delete(Integer leaveApplicationId);
+
+    LeaveApplication changeStatus(Integer leaveApplicationId, String leaveStatus);
+
     boolean validateLeaveApplication(LeaveApplication leaveApplication);
 }
