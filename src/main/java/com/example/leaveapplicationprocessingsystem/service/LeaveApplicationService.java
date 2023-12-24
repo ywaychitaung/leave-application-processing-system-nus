@@ -3,6 +3,7 @@ package com.example.leaveapplicationprocessingsystem.service;
 import com.example.leaveapplicationprocessingsystem.entity.LeaveApplication;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
@@ -37,4 +38,6 @@ public interface LeaveApplicationService {
     // Cancel the leave application
     // 取消请假申请
     LeaveApplication cancel(Integer leaveApplicationId);
+
+    boolean validateLeaveApplication(LeaveApplication leaveApplication);
 }

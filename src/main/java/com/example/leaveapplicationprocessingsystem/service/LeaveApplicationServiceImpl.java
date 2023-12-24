@@ -2,10 +2,12 @@ package com.example.leaveapplicationprocessingsystem.service;
 
 import com.example.leaveapplicationprocessingsystem.entity.LeaveApplication;
 import com.example.leaveapplicationprocessingsystem.repository.LeaveApplicationRepository;
+import com.example.leaveapplicationprocessingsystem.validator.LeaveApplicationValidator;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +19,9 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
     // 创建一个新的 LeaveApplicationRepository 接口对象
     @Autowired
     private LeaveApplicationRepository leaveApplicationRepository;
+
+    @Autowired
+    private LeaveApplicationValidator leaveApplicationValidator;
 
     @Override
     @Transactional
@@ -104,5 +109,20 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
         //  Save the leave application
         //  保存请假申请
         return leaveApplicationRepository.saveAndFlush(leaveApplication);
+    }
+
+    public boolean validateLeaveApplication(LeaveApplication leaveApplication) {
+        // Validate leave period
+        boolean isValid = leaveApplicationValidator.validate(leaveApplication);
+        if (!isValid) {
+            // Handle invalid leave request
+            System.out.println("Leave application is invalid.");
+            return false;
+        }
+
+        // Process valid leave application
+        System.out.println("Leave application is processed.");
+
+        return true;
     }
 }

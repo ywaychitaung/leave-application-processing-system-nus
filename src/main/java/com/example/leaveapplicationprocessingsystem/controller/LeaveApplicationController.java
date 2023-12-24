@@ -107,14 +107,40 @@ public class LeaveApplicationController {
     // ModelAttribute: Bind the form data to the LeaveApplication object
     // ModelAttribute：将表单数据绑定到  LeaveApplication对象
     public String store(@ModelAttribute LeaveApplication leaveApplication,
-                        HttpSession session) {
-        //  Save the leave application
-        //  保存请假申请
-        leaveApplicationService.store(leaveApplication, session);
+                        HttpSession session, Model model) {
+        boolean isValid = leaveApplicationService.validateLeaveApplication(leaveApplication);
 
-        //  Redirect to the home page
-        //  重定向到主页
-        return "redirect:/leave-applications";
+        if (isValid) {
+            //  Store the leave application
+            //  存储请假申请
+            leaveApplicationService.store(leaveApplication, session);
+
+            //  Redirect to the home page
+            //  重定向到主页
+            return "redirect:/leave-applications";
+        } else {
+            // Add an error message to the model
+            model.addAttribute("errorMessage", "Leave application is invalid. Please correct the details and try again.");
+
+            model.addAttribute("firstName", session.getAttribute("firstName"));
+            model.addAttribute("lastName", session.getAttribute("lastName"));
+
+            // Get all leave types
+            // 获取所有请假类型
+            model.addAttribute("leaveTypes", leaveTypeService.getAllLeaveTypes());
+
+            // Get role name by role ID
+            // 通过角色 ID 获取角色名称
+            String roleName = roleService.getRoleNameByRoleId((Integer) session.getAttribute("roleId")).getRoleName();
+
+            // Add the role name to the model
+            // 将角色名称添加到模型中
+            model.addAttribute("roleName", roleName);
+
+            //  Redirect to the create page
+            //  重定向到创建页面
+            return "leave-application/create";
+        }
     }
 
     @GetMapping("/leave-application/edit/{id}")
