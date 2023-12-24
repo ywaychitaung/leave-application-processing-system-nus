@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface EmployeeService {
     List<Employee> getEmployeesByManager(Integer managerId);
+
+    Employee findByEmployeeId(Integer employeeId);
+
+    Employee findByUserId(Integer userId);
 }

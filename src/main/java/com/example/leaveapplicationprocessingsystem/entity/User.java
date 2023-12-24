@@ -25,8 +25,8 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @Column(name="role_id", insertable=false, updatable=false)
-    private Integer roleId; // added Role into User
+    @Column(name="role_id")
+    private Integer roleId;
 
     public User() {}
 

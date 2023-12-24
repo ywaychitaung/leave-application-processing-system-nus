@@ -1,13 +1,14 @@
 package com.example.leaveapplicationprocessingsystem.service;
 
+import com.example.leaveapplicationprocessingsystem.entity.Employee;
 import com.example.leaveapplicationprocessingsystem.entity.LeaveApplication;
+import com.example.leaveapplicationprocessingsystem.entity.User;
 import com.example.leaveapplicationprocessingsystem.repository.LeaveApplicationRepository;
 import com.example.leaveapplicationprocessingsystem.validator.LeaveApplicationValidator;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,9 @@ import java.util.Map;
 
 @Service
 public class LeaveApplicationServiceImpl implements LeaveApplicationService {
+    @Autowired
+    private EmployeeService employeeService;
+
     // Create a new LeaveApplicationRepository interface object
     // 创建一个新的 LeaveApplicationRepository 接口对象
     @Autowired
@@ -62,9 +66,12 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
         // 将请假状态设置为“已申请”
         leaveApplication.setLeaveStatus("Applied");
 
-        // Set the user ID from the session
-        // 从会话中设置用户 ID
-        leaveApplication.setUserId((Integer) session.getAttribute("userId"));
+        Employee employee = employeeService.findByUserId((Integer) session.getAttribute("userId"));
+        leaveApplication.setEmployee(employee);
+
+        System.out.println(session.getAttribute("userId"));
+        System.out.println(employee.getEmployeeId());
+        System.out.println(employee.getUserId());
 
         //  Save the leave application
         // 保存请假申请
@@ -87,7 +94,9 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
         leaveApplicationToUpdate.setWorkDissemination(leaveApplication.getWorkDissemination());
         leaveApplicationToUpdate.setContactDetails(leaveApplication.getContactDetails());
         leaveApplicationToUpdate.setLeaveStatus("Updated");
-        leaveApplicationToUpdate.setUserId((Integer) session.getAttribute("userId"));
+
+        Employee employee = employeeService.findByUserId((Integer) session.getAttribute("userId"));
+        leaveApplication.setEmployee(employee);
 
         //  Save the leave application
         //  保存请假申请

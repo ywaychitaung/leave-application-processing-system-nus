@@ -24,4 +24,9 @@ public class UserServiceImpl implements UserService {
         // 通过角色 ID 查找所有用户
         return userRepository.findByRoleId(roleId);
     }
+
+    @Override
+    public User findByUserId(Integer userId) {
+        return userRepository.findByUserId(userId);
+    }
 }

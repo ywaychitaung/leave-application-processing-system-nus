@@ -1,7 +1,6 @@
 package com.example.leaveapplicationprocessingsystem.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -11,9 +10,6 @@ public class LeaveApplication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="leave_application_id")
     private Integer leaveApplicationId;
-
-    @Column(name="user_id", insertable=false, updatable=false)
-    private Integer userId;
 
     @Column(name="leave_type_id")
     private Integer leaveTypeId;
@@ -43,7 +39,6 @@ public class LeaveApplication {
     public LeaveApplication() {}
 
     public LeaveApplication(Integer leaveApplicationId,
-                            Integer userId,
                             Integer leaveTypeId,
                             LocalDate startDate,
                             LocalDate endDate,
@@ -52,7 +47,6 @@ public class LeaveApplication {
                             String workDissemination,
                             String contactDetails) {
         this.leaveApplicationId = leaveApplicationId;
-        this.userId = userId;
         this.leaveTypeId = leaveTypeId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -65,10 +59,6 @@ public class LeaveApplication {
     public Integer getLeaveApplicationId() { return leaveApplicationId; }
 
     public void setLeaveApplicationId(Integer leaveApplicationId) { this.leaveApplicationId = leaveApplicationId; }
-
-    public Integer getUserId() { return userId; }
-
-    public void setUserId(Integer userId) { this.userId = userId; }
 
     public Integer getLeaveTypeId() { return leaveTypeId; }
 
@@ -97,4 +87,8 @@ public class LeaveApplication {
     public String getContactDetails() { return contactDetails; }
 
     public void setContactDetails(String contactDetails) { this.contactDetails = contactDetails; }
+
+    public Employee getEmployee() { return employee; }
+
+    public void setEmployee(Employee employee) { this.employee = employee; }
 }
