@@ -1429,30 +1429,6 @@ select {
   line-height: 2.25rem;
 }
 
-.leading-8 {
-  line-height: 2rem;
-}
-
-.leading-10 {
-  line-height: 2.5rem;
-}
-
-.leading-\[\] {
-  line-height: ;
-}
-
-.leading-\[3rem\] {
-  line-height: 3rem;
-}
-
-.leading-\[2rem\] {
-  line-height: 2rem;
-}
-
-.leading-\[2\.8rem\] {
-  line-height: 2.8rem;
-}
-
 .leading-\[2\.5rem\] {
   line-height: 2.5rem;
 }

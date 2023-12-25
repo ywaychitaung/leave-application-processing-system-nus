@@ -19,6 +19,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User update(User user) {
+        User userToUpdate = userRepository.findByUserId(user.getUserId());
+
+        System.out.println(userToUpdate);
+
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setUsername(user.getUsername());
+        userToUpdate.setRoleId(user.getRoleId());
+
+        return userRepository.saveAndFlush(userToUpdate);
+    }
+
+    @Override
+    public User delete(Integer id) {
+        User user = userRepository.findByUserId(id);
+
+        userRepository.delete(user);
+        return user;
+    }
+
+    @Override
     public List<User> findByRoleId(Integer roleId) {
         // Find all users by role ID
         // 通过角色 ID 查找所有用户

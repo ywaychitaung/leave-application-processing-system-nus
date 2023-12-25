@@ -14,6 +14,7 @@
 
         <main class="py-10">
             <div class="px-4 sm:px-6 lg:px-8">
+                <h3 class="text-xl font-semibold text-center mt-8 mb-16">View All Users</h3>
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
                         <h1 class="text-base font-semibold leading-6 text-gray-900">Admin Table</h1>
@@ -45,7 +46,7 @@
                                         <td th:text="${admin.email}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                         <td th:text="${admin.username}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                                            <a th:href="@{'/user/details/' + ${admin.userId}}" class="text-teal-500 hover:text-teal-900 hover:underline">View Details</a>
+                                            <a th:href="@{'/user/show/' + ${admin.userId}}" class="text-teal-500 hover:text-teal-900 hover:underline">View Details</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -88,7 +89,7 @@
                                         <td th:text="${employee.email}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                         <td th:text="${employee.username}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                                            <a th:href="@{'/user/details/' + ${employee.userId}}" class="text-teal-500 hover:text-teal-900 hover:underline">View Details</a>
+                                            <a th:href="@{'/user/show/' + ${employee.userId}}" class="text-teal-500 hover:text-teal-900 hover:underline">View Details</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -131,7 +132,7 @@
                                         <td th:text="${manager.email}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                         <td th:text="${manager.username}" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                                            <a th:href="@{'/user/details/' + ${manager.userId}}" class="text-teal-500 hover:text-teal-900 hover:underline">View Details</a>
+                                            <a th:href="@{'/user/show/' + ${manager.userId}}" class="text-teal-500 hover:text-teal-900 hover:underline">View Details</a>
                                         </td>
                                     </tr>
                                     </tbody>

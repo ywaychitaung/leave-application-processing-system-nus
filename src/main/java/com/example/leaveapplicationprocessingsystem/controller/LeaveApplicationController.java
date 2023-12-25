@@ -193,7 +193,7 @@ public class LeaveApplicationController {
         return "leave-application/edit";
     }
 
-    @GetMapping("/leave-application/update")
+    @PostMapping("/leave-application/update")
     public String update(@ModelAttribute LeaveApplication leaveApplication, HttpSession session) {
         //  Update the leave application
         //  更新请假申请

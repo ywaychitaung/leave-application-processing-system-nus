@@ -8,6 +8,10 @@ import java.util.List;
 public interface UserService {
     User store(User user, HttpSession session);
 
+    User update(User user);
+
+    User delete(Integer id);
+
     User findByUserId(Integer userId);
 
     // Find user by role ID
