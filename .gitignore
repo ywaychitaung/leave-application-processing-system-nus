@@ -38,6 +38,8 @@ build/
 ### Node modules ###
 node_modules/
 
-### env ###
-.env
+### Logs ###
 *.log
+
+### Environment variables ###
+/src/resources/application-prod.properties
