@@ -1,0 +1,29 @@
+{
+  "name": "leave-application-processing-system-nus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css",
+    "watch-css": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch",
+    "copy-jquery": "cp node_modules/jquery/dist/jquery.min.js src/main/resources/static/js/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ywaychitaung/leave-application-processing-system-nus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ywaychitaung/leave-application-processing-system-nus/issues"
+  },
+  "homepage": "https://github.com/ywaychitaung/leave-application-processing-system-nus#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "jquery": "^3.7.1",
+    "tailwindcss": "^4.1.11"
+  }
+}
