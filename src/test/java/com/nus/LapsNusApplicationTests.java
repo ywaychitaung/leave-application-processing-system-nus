@@ -1,10 +1,10 @@
-package com.example.leaveapplicationprocessingsystem;
+package com.nus;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LeaveApplicationProcessingSystemApplicationTests {
+class LapsNusApplicationTests {
 
     @Test
     void contextLoads() {
